@@ -190,6 +190,47 @@
             .nav-links { display: none; }
             footer { flex-direction: column; gap: 15px; text-align: center; }
         }
+        /* Mobile Optimization - Forced Display */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column !important;
+        gap: 15px !important;
+        padding: 20px 5% !important;
+    }
+
+    /* !important මඟින් ඕනෑම පරණ display: none කෑල්ලක් අක්‍රීය කරයි */
+    .nav-links { 
+        display: flex !important; 
+        visibility: visible !important;
+        opacity: 1 !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    .nav-links li { 
+        display: inline-block !important; 
+        margin: 0 !important; 
+    }
+
+    .nav-links a {
+        font-size: 11px !important; /* Phone එකට ගැළපෙන කුඩා අකුරු */
+        letter-spacing: 1px !important;
+        color: #ffffff !important; /* අකුරු සහ අයිකන් සුදු පැහැයෙන්ම පෙන්වීමට */
+        opacity: 0.7;
+    }
+
+    /* Active Page එක තදින්ම පෙන්වීමට */
+    .nav-links a[style*="opacity: 1"] {
+        opacity: 1 !important;
+    }
+
+    .content h1 { font-size: 32px !important; letter-spacing: 2px !important; }
+    .content p { font-size: 14px !important; }
+    footer { flex-direction: column !important; gap: 15px !important; text-align: center !important; }
+}
     </style>
 </head>
 <body>
