@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXPLORE SRI LANKA | Premium Travel Guide</title>
+    
     <!-- Google Fonts for Clean Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons Link (අයිකන් පෙනෙන්න අනිවාර්යයි) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <link rel="stylesheet" href="/responsive.css">
     <style>
         * {
@@ -40,7 +45,7 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            pointer-events: none; /* Disables double click to pause or YouTube controls interaction */
+            pointer-events: none;
             overflow: hidden;
         }
 
@@ -106,6 +111,13 @@
 
         .nav-links a:hover {
             opacity: 1;
+        }
+
+        /* Icon styling (අයිකන් සහ අකුරු අතර ඉඩ සකස් කිරීම) */
+        .nav-links a i {
+            margin-right: 6px;
+            font-size: 13px;
+            vertical-align: middle;
         }
 
         /* Main Content Style */
@@ -183,54 +195,40 @@
             opacity: 0.5;
         }
 
-        /* Mobile Optimization */
+        /* Mobile Optimization (පරණ වැරදි CSS කොටස් ඉවත් කර පිරිසිදු කරන ලදි) */
         @media (max-width: 768px) {
-            .content h1 { font-size: 36px; letter-spacing: 2px; }
-            .content p { font-size: 14px; }
-            .nav-links { display: none; }
-            footer { flex-direction: column; gap: 15px; text-align: center; }
+            header {
+                flex-direction: column !important;
+                gap: 15px !important;
+                padding: 20px 5% !important;
+            }
+
+            .nav-links { 
+                display: flex !important; 
+                visibility: visible !important;
+                opacity: 1 !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 12px !important;
+                width: 100% !important;
+                padding: 0 !important;
+            }
+            
+            .nav-links li { 
+                display: inline-block !important; 
+                margin: 0 !important; 
+            }
+
+            .nav-links a {
+                font-size: 11px !important;
+                letter-spacing: 1px !important;
+                color: #ffffff !important;
+            }
+
+            .content h1 { font-size: 32px !important; letter-spacing: 2px !important; }
+            .content p { font-size: 14px !important; }
+            footer { flex-direction: column !important; gap: 15px !important; text-align: center !important; }
         }
-        /* Mobile Optimization - Forced Display */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column !important;
-        gap: 15px !important;
-        padding: 20px 5% !important;
-    }
-
-    /* !important මඟින් ඕනෑම පරණ display: none කෑල්ලක් අක්‍රීය කරයි */
-    .nav-links { 
-        display: flex !important; 
-        visibility: visible !important;
-        opacity: 1 !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 12px !important;
-        width: 100% !important;
-        padding: 0 !important;
-    }
-    
-    .nav-links li { 
-        display: inline-block !important; 
-        margin: 0 !important; 
-    }
-
-    .nav-links a {
-        font-size: 11px !important; /* Phone එකට ගැළපෙන කුඩා අකුරු */
-        letter-spacing: 1px !important;
-        color: #ffffff !important; /* අකුරු සහ අයිකන් සුදු පැහැයෙන්ම පෙන්වීමට */
-        opacity: 0.7;
-    }
-
-    /* Active Page එක තදින්ම පෙන්වීමට */
-    .nav-links a[style*="opacity: 1"] {
-        opacity: 1 !important;
-    }
-
-    .content h1 { font-size: 32px !important; letter-spacing: 2px !important; }
-    .content p { font-size: 14px !important; }
-    footer { flex-direction: column !important; gap: 15px !important; text-align: center !important; }
-}
     </style>
 </head>
 <body>
@@ -238,12 +236,6 @@
     <section class="hero">
         <!-- YouTube Video Wrapper -->
         <div class="video-background">
-            <!-- 
-                Parameters Explained:
-                - autoplay=1 & mute=1 (Required for browser autoplay)
-                - loop=1 & playlist=VIDEO_ID (Required for continuous looping)
-                - controls=0 & rel=0 (Hides YouTube player controls)
-            -->
             <iframe src="https://www.youtube.com/embed/yl3P0XiuQ0Y?autoplay=1&mute=1&loop=1&playlist=yl3P0XiuQ0Y&controls=0&rel=0&showinfo=0&iv_load_policy=3" 
                     frameborder="0" 
                     allow="autoplay; encrypted-media" 
@@ -257,20 +249,21 @@
         <!-- Transparent Navigation -->
         <header>
             <div class="logo">Ceylon / Travels</div>
+            <!-- Icons සහිත නවතම Menu එක -->
             <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/explore">Explore</a></li>
-    <li><a href="/journeys">Journeys</a></li>
-    <li><a href="/journal">Journal</a></li>
-    <li><a href="/contact">Contact</a></li>
-</ul>
+                <li><a href="/"><i class="fa-regular fa-compass"></i>Home</a></li>
+                <li><a href="/explore"><i class="fa-solid fa-earth-asia"></i>Explore</a></li>
+                <li><a href="/journeys"><i class="fa-solid fa-route"></i>Journeys</a></li>
+                <li><a href="/journal"><i class="fa-regular fa-newspaper"></i>Journal</a></li>
+                <li><a href="/contact"><i class="fa-regular fa-envelope"></i>Contact</a></li>
+            </ul>
         </header>
 
         <!-- Center Content -->
         <div class="content">
             <h1>Unveil The Paradise</h1>
             <p>Immerse yourself in the breathtaking landscapes, ancient wonders, and endless golden coasts of Sri Lanka. Crafted for the intentional traveler.</p>
-           <a href="/explore" class="cta-btn">Explore Packages</a>
+            <a href="/explore" class="cta-btn">Explore Packages</a>
         </div>
 
         <!-- Footer -->
