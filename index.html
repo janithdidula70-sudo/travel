@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEYLON — The Bureau of Luxury Travel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;0,500;1,300&family=Inter:wght=200;400;600&display=swap" rel="stylesheet">
+    <!-- Premium Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,7 +19,6 @@
             font-family: 'Inter', sans-serif;
             overflow: hidden;
             height: 100vh;
-            height: 100dvh; /* Auto-fix for mobile browser navigation bars */
         }
 
         /* Luxury Outer Frame */
@@ -31,7 +31,6 @@
             border: 16px solid #000000;
             z-index: 100;
             pointer-events: none;
-            transition: border 0.3s ease;
         }
 
         /* Hero Container */
@@ -39,18 +38,14 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 40px 60px;
             overflow: hidden;
-            background: #000000; /* Video එක load වෙනකන් කළු පැහැති පසුබිම */
         }
 
-        /* ========================================================
-           ULTRA-RESPONSIVE YOUTUBE BACKGROUND ENGINE
-           ======================================================== */
+        /* YouTube Background Setup */
         .video-wrapper {
             position: absolute;
             top: 0;
@@ -59,33 +54,18 @@
             height: 100%;
             z-index: -2;
             pointer-events: none;
-            overflow: hidden;
         }
 
         .video-wrapper iframe {
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.77vh;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            opacity: 0.85;
-            border: none;
-        }
-
-        /* තිරය පළලින් වැඩි අවස්ථාවලදී (Desktop/Laptops) */
-        @media (min-aspect-ratio: 16/9) {
-            .video-wrapper iframe {
-                width: 100vw;
-                height: 56.25vw; /* 16:9 Ratio */
-            }
-        }
-
-        /* තිරය උසින් වැඩි අවස්ථාවලදී (Mobile Phones/Tablets) */
-        @media (max-aspect-ratio: 16/9) {
-            .video-wrapper iframe {
-                width: 177.78vh; /* 16:9 Ratio scaled vertically */
-                height: 100vh;
-                height: 100dvh;
-            }
+            opacity: 0.85; /* Slight dimming for raw video */
         }
 
         /* Deep High-Contrast Overlay */
@@ -95,7 +75,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.85) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%);
             z-index: -1;
         }
 
@@ -143,11 +123,9 @@
         /* Central Bespoke Content */
         .main-content {
             max-width: 750px;
-            width: 100%;
             margin: 0 auto;
             text-align: center;
             z-index: 10;
-            padding: 0 10px;
         }
 
         .sub-title {
@@ -167,7 +145,7 @@
             line-height: 1.1;
             letter-spacing: 6px;
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             animation: fadeInUp 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
@@ -177,7 +155,7 @@
             line-height: 1.8;
             letter-spacing: 1px;
             opacity: 0.7;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
             padding: 0 40px;
             animation: fadeInUp 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
@@ -272,61 +250,39 @@
             to { opacity: 1; }
         }
 
-        /* ========================================================
-           RESPONSIVE BREAKPOINTS (ULTRA MOBILE OPTIMIZATION)
-           ======================================================== */
-        
-        /* Tablet & Small Laptops */
+        /* Tablet & Mobile Scale Down */
         @media (max-width: 900px) {
-            .main-title { font-size: 58px; }
-            .page-frame { border: 10px solid #000; }
-            .hero-container { padding: 30px 40px; }
+            .main-title { font-size: 52px; }
+            .page-frame { border: 8px solid #000; }
+            .hero-container { padding: 30px; }
             .nav-menu, .side-element { display: none; }
-            .description { padding: 0; font-size: 14px; }
-        }
-
-        /* Standard & Small Mobile Phones */
-        @media (max-width: 600px) {
-            .page-frame { border: 6px solid #000; } 
-            .hero-container { padding: 30px 24px; }
-            
-            .brand-logo { font-size: 24px; letter-spacing: 3px; }
-            
-            .sub-title { font-size: 9px; letter-spacing: 4px; margin-bottom: 12px; }
-            .main-title { font-size: 38px; letter-spacing: 3px; margin-bottom: 20px; }
-            .description { font-size: 13px; line-height: 1.7; padding: 0; margin-bottom: 35px; }
-            
-            .premium-btn { padding: 15px 36px; font-size: 10px; letter-spacing: 3px; width: 100%; max-width: 280px; }
-            
-            footer { flex-direction: column; gap: 10px; text-align: center; width: 100%; }
-            .curated-destinations { font-size: 10px; letter-spacing: 1px; }
-            .curated-destinations span { font-size: 12px; }
-            .editorial-number { display: none; } 
-        }
-
-        /* Super Small/Narrow Phones */
-        @media (max-width: 360px) {
-            .main-title { font-size: 32px; }
-            .description { font-size: 12px; margin-bottom: 25px; }
-            .hero-container { padding: 20px 16px; }
+            .description { padding: 0; font-size: 13px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Luxury Outer Border Frame -->
     <div class="page-frame"></div>
 
     <section class="hero-container">
         
+        <!-- High-End Background Video Element -->
         <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/yl3P0XiuQ0Y?autoplay=1&mute=1&loop=1&playlist=yl3P0XiuQ0Y&controls=0&rel=0&playsinline=1&enablejsapi=1" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-            </iframe >
+            <!-- 
+                Using a high-quality cinematic Sri Lanka drone compilation.
+                Controls hidden, audio muted, looping seamlessly.
+             -->
+            <iframe src="https://www.youtube.com/embed/yl3P0XiuQ0Y?autoplay=1&mute=1&loop=1&playlist=yl3P0XiuQ0Y&controls=0&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media">
+            </iframe>
         </div>
         
+        <!-- Premium Vignette & Contrast Overlay -->
         <div class="video-overlay"></div>
 
+        <!-- Minimalist Luxury Header -->
         <header>
             <div class="brand-logo">CEYLON</div>
             <ul class="nav-menu">
@@ -337,8 +293,10 @@
             </ul>
         </header>
 
+        <!-- Vertical Architectural Text Element -->
         <div class="side-element side-left">EST. 2026 — CURATED EXPERIENCES</div>
 
+        <!-- Centerpiece Luxury Typography -->
         <div class="main-content">
             <p class="sub-title">01 / Original Paradise</p>
             <h1 class="main-title">The Art of <br>Travel</h1>
@@ -348,6 +306,7 @@
             <a href="#" class="premium-btn">Begin Journey</a>
         </div>
 
+        <!-- Editorial Minimal Footer -->
         <footer>
             <div class="curated-destinations">
                 Current Chapter: <span>Amanwella & Ella Highlands</span>
