@@ -99,6 +99,33 @@
             
             footer { flex-direction: column !important; gap: 15px !important; text-align: center !important; padding: 25px 5% !important; margin-top: 40px !important; }
         }
+        /* 1. මුළු බැක්ග්‍රවුන්ඩ් එකම කවර් කරන කන්ටේනර් එක */
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    background: #000;
+}
+
+/* 2. YouTube Iframe එක Object-Fit: Cover වගේ හැසිරෙන්න හදන කෝඩ් එක */
+.bg-container iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 Aspect Ratio */
+    min-height: 100vh;
+    min-width: 177.77vh; /* 16:9 Aspect Ratio */
+    
+    /* translate එකෙන් මැදට ගන්නවා, scale(1.15) එකෙන් වීඩියෝ එක පොඩ්ඩක් Zoom කරලා YouTube Branding (Title/Logo) ටික screen එකෙන් පිටට තල්ලු කරනවා */
+    transform: translate(-50%, -50%) scale(1.15); 
+    
+    pointer-events: none; /* යූසර්ට වීඩියෝ එක ක්ලික් කරලා Pause කරන්න බැරි වෙන්න */
+}
     </style>
 </head>
 <body>
