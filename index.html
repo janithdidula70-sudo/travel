@@ -3,317 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEYLON — The Bureau of Luxury Travel</title>
-    <!-- Premium Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+    <title>EXPLORE SRI LANKA | Premium Travel Guide</title>
+    <!-- Google Fonts for Clean Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        body, html {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            overflow: hidden;
-            height: 100vh;
-        }
-
-        /* Luxury Outer Frame */
-        .page-frame {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 16px solid #000000;
-            z-index: 100;
-            pointer-events: none;
+        body {
+            background: #000; /* Pure Black Background Fallback */
+            overflow-x: hidden;
         }
 
         /* Hero Container */
-        .hero-container {
+        .hero {
             position: relative;
             width: 100%;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 40px 60px;
             overflow: hidden;
+            color: #fff;
         }
 
-        /* YouTube Background Setup */
-        .video-wrapper {
+        /* YouTube Video Background Wrapper */
+        .video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -2;
-            pointer-events: none;
+            pointer-events: none; /* Disables double click to pause or YouTube controls interaction */
+            overflow: hidden;
         }
 
-        .video-wrapper iframe {
+        /* Scaling the iframe to crop YouTube logos/controls completely */
+        .video-background iframe {
             width: 100vw;
-            height: 56.25vw;
+            height: 56.25vw; /* 16:9 Aspect Ratio */
             min-height: 100vh;
-            min-width: 177.77vh;
+            min-width: 177.77vh; /* 16:9 Aspect Ratio */
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            opacity: 0.85; /* Slight dimming for raw video */
         }
 
-        /* Deep High-Contrast Overlay */
-        .video-overlay {
+        /* High Contrast Dark Overlay */
+        .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%);
+            background: rgba(0, 0, 0, 0.65); /* Pure black with 65% opacity */
             z-index: -1;
         }
 
-        /* Minimal Header */
+        /* Minimalist White Header Navbar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 35px 8%;
             z-index: 10;
-            animation: fadeIn 1.5s ease forwards;
         }
 
-        .brand-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            font-weight: 300;
-            letter-spacing: 4px;
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
-        .nav-menu {
-            display: flex;
+        .nav-links {
             list-style: none;
         }
 
-        .nav-menu li {
-            margin-left: 45px;
+        .nav-links li {
+            display: inline-block;
+            margin: 0 25px;
         }
 
-        .nav-menu a {
-            color: #ffffff;
+        .nav-links a {
             text-decoration: none;
-            font-size: 11px;
-            font-weight: 200;
-            letter-spacing: 3px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            opacity: 0.6;
-            transition: opacity 0.4s ease;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
 
-        .nav-menu a:hover {
+        .nav-links a:hover {
             opacity: 1;
         }
 
-        /* Central Bespoke Content */
-        .main-content {
-            max-width: 750px;
-            margin: 0 auto;
+        /* Main Content Style */
+        .content {
             text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px;
             z-index: 10;
         }
 
-        .sub-title {
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 6px;
+        .content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            margin-bottom: 20px;
-            opacity: 0.5;
-            animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            letter-spacing: 4px;
         }
 
-        .main-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 84px;
-            font-weight: 300;
-            line-height: 1.1;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            animation: fadeInUp 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        .description {
-            font-size: 15px;
-            font-weight: 200;
-            line-height: 1.8;
-            letter-spacing: 1px;
-            opacity: 0.7;
+        .content p {
+            font-size: 16px;
             margin-bottom: 45px;
-            padding: 0 40px;
-            animation: fadeInUp 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            font-weight: 300;
+            letter-spacing: 1px;
+            line-height: 1.8;
+            opacity: 0.8;
         }
 
-        /* Architectural Ghost Button */
-        .premium-btn {
+        /* Sleek White Button with High Contrast Hover */
+        .cta-btn {
             display: inline-block;
-            padding: 18px 46px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #ffffff;
+            padding: 16px 42px;
+            background: #fff;
+            color: #000;
             text-decoration: none;
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 4px;
+            font-weight: 600;
             text-transform: uppercase;
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            animation: fadeInUp 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            letter-spacing: 2px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            border: 1px solid #fff;
         }
 
-        .premium-btn:hover {
-            border-color: #ffffff;
-            background: #ffffff;
-            color: #000000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        .cta-btn:hover {
+            background: transparent;
+            color: #fff;
+            transform: translateY(-2px);
         }
 
-        /* Architectural Side Elements (Vertical Text) */
-        .side-element {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            opacity: 0.3;
-            z-index: 10;
-        }
-
-        .side-left {
-            left: 40px;
-            transform: rotate(-90deg) translateX(-50%);
-            transform-origin: left top;
-        }
-
-        /* Footer Aesthetics */
+        /* Footer Grid */
         footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 35px 8%;
             z-index: 10;
-            animation: fadeIn 2.2s ease forwards;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .curated-destinations {
-            font-size: 11px;
-            font-weight: 200;
-            letter-spacing: 2px;
+        .destinations-list {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .destinations-list span {
+            margin-right: 20px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            letter-spacing: 1px;
             opacity: 0.5;
         }
 
-        .curated-destinations span {
-            font-style: italic;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 14px;
-            margin-left: 5px;
-            opacity: 0.9;
-        }
-
-        .editorial-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            font-weight: 300;
-            opacity: 0.5;
-        }
-
-        /* Entry Animations Keyframes */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Tablet & Mobile Scale Down */
-        @media (max-width: 900px) {
-            .main-title { font-size: 52px; }
-            .page-frame { border: 8px solid #000; }
-            .hero-container { padding: 30px; }
-            .nav-menu, .side-element { display: none; }
-            .description { padding: 0; font-size: 13px; }
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .content h1 { font-size: 36px; letter-spacing: 2px; }
+            .content p { font-size: 14px; }
+            .nav-links { display: none; }
+            footer { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Luxury Outer Border Frame -->
-    <div class="page-frame"></div>
-
-    <section class="hero-container">
-        
-        <!-- High-End Background Video Element -->
-        <div class="video-wrapper">
+    <section class="hero">
+        <!-- YouTube Video Wrapper -->
+        <div class="video-background">
             <!-- 
-                Using a high-quality cinematic Sri Lanka drone compilation.
-                Controls hidden, audio muted, looping seamlessly.
-             -->
-            <iframe src="https://www.youtube.com/embed/yl3P0XiuQ0Y?autoplay=1&mute=1&loop=1&playlist=yl3P0XiuQ0Y&controls=0&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1" 
+                Parameters Explained:
+                - autoplay=1 & mute=1 (Required for browser autoplay)
+                - loop=1 & playlist=VIDEO_ID (Required for continuous looping)
+                - controls=0 & rel=0 (Hides YouTube player controls)
+            -->
+            <iframe src="https://www.youtube.com/embed/yl3P0XiuQ0Y?autoplay=1&mute=1&loop=1&playlist=yl3P0XiuQ0Y&controls=0&rel=0&showinfo=0&iv_load_policy=3" 
                     frameborder="0" 
-                    allow="autoplay; encrypted-media">
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
             </iframe>
         </div>
         
-        <!-- Premium Vignette & Contrast Overlay -->
-        <div class="video-overlay"></div>
+        <!-- Premium Dark Overlay -->
+        <div class="overlay"></div>
 
-        <!-- Minimalist Luxury Header -->
+        <!-- Transparent Navigation -->
         <header>
-            <div class="brand-logo">CEYLON</div>
-            <ul class="nav-menu">
-                <li><a href="#">The Bureau</a></li>
-                <li><a href="#">Destinations</a></li>
-                <li><a href="#">Bespoke Tours</a></li>
+            <div class="logo">Ceylon / Travels</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Journeys</a></li>
+                <li><a href="#">Journal</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </header>
 
-        <!-- Vertical Architectural Text Element -->
-        <div class="side-element side-left">EST. 2026 — CURATED EXPERIENCES</div>
-
-        <!-- Centerpiece Luxury Typography -->
-        <div class="main-content">
-            <p class="sub-title">01 / Original Paradise</p>
-            <h1 class="main-title">The Art of <br>Travel</h1>
-            <p class="description">
-                Immerse yourself in the raw, uncompromised beauty of an ancient island. From mystical misty highlands to silent golden horizons, experience Sri Lanka tailored precisely to your standard.
-            </p>
-            <a href="#" class="premium-btn">Begin Journey</a>
+        <!-- Center Content -->
+        <div class="content">
+            <h1>Unveil The Paradise</h1>
+            <p>Immerse yourself in the breathtaking landscapes, ancient wonders, and endless golden coasts of Sri Lanka. Crafted for the intentional traveler.</p>
+            <a href="#" class="cta-btn">Explore Packages</a>
         </div>
 
-        <!-- Editorial Minimal Footer -->
+        <!-- Footer -->
         <footer>
-            <div class="curated-destinations">
-                Current Chapter: <span>Amanwella & Ella Highlands</span>
+            <div class="destinations-list">
+                <span>• Sigiriya</span> <span>• Ella</span> <span>• Mirissa</span>
             </div>
-            <div class="editorial-number">I / X</div>
+            <p class="copyright">&copy; 2026 CEYLON TRAVELS. UNCOMPROMISED LUXURY.</p>
         </footer>
-
     </section>
 
 </body>
