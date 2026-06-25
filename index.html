@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEYLON — The Bureau of Luxury Travel</title>
-    <!-- Premium Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;0,500;1,300&family=Inter:wght=200;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -40,15 +39,18 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            height: 100dvh; /* Fixes layout cut-off on phones */
+            height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 40px 60px;
             overflow: hidden;
+            background: #000000; /* Video එක load වෙනකන් කළු පැහැති පසුබිම */
         }
 
-        /* YouTube Background Setup */
+        /* ========================================================
+           ULTRA-RESPONSIVE YOUTUBE BACKGROUND ENGINE
+           ======================================================== */
         .video-wrapper {
             position: absolute;
             top: 0;
@@ -57,19 +59,33 @@
             height: 100%;
             z-index: -2;
             pointer-events: none;
+            overflow: hidden;
         }
 
         .video-wrapper iframe {
-            width: 100vw;
-            height: 56.25vw;
-            min-height: 100vh;
-            min-height: 100dvh;
-            min-width: 177.77vh;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0.85;
+            border: none;
+        }
+
+        /* තිරය පළලින් වැඩි අවස්ථාවලදී (Desktop/Laptops) */
+        @media (min-aspect-ratio: 16/9) {
+            .video-wrapper iframe {
+                width: 100vw;
+                height: 56.25vw; /* 16:9 Ratio */
+            }
+        }
+
+        /* තිරය උසින් වැඩි අවස්ථාවලදී (Mobile Phones/Tablets) */
+        @media (max-aspect-ratio: 16/9) {
+            .video-wrapper iframe {
+                width: 177.78vh; /* 16:9 Ratio scaled vertically */
+                height: 100vh;
+                height: 100dvh;
+            }
         }
 
         /* Deep High-Contrast Overlay */
@@ -269,9 +285,9 @@
             .description { padding: 0; font-size: 14px; }
         }
 
-        /* Standard & Small Mobile Phones (Auto-Fix Engine) */
+        /* Standard & Small Mobile Phones */
         @media (max-width: 600px) {
-            .page-frame { border: 6px solid #000; } /* Thinner border to maximize viewport space */
+            .page-frame { border: 6px solid #000; } 
             .hero-container { padding: 30px 24px; }
             
             .brand-logo { font-size: 24px; letter-spacing: 3px; }
@@ -285,10 +301,10 @@
             footer { flex-direction: column; gap: 10px; text-align: center; width: 100%; }
             .curated-destinations { font-size: 10px; letter-spacing: 1px; }
             .curated-destinations span { font-size: 12px; }
-            .editorial-number { display: none; } /* Hidden on small mobile to keep footer ultra-clean */
+            .editorial-number { display: none; } 
         }
 
-        /* Super Small/Narrow Phones (e.g., iPhone SE, Galaxy Fold) */
+        /* Super Small/Narrow Phones */
         @media (max-width: 360px) {
             .main-title { font-size: 32px; }
             .description { font-size: 12px; margin-bottom: 25px; }
@@ -298,24 +314,19 @@
 </head>
 <body>
 
-    <!-- Luxury Outer Border Frame -->
     <div class="page-frame"></div>
 
     <section class="hero-container">
         
-        <!-- High-End Background Video Element (Fixed Autoplay Settings) -->
         <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/yl3P0XiuQ0Y?autoplay=1&mute=1&loop=1&playlist=yl3P0XiuQ0Y&controls=0&rel=0&playsinline=1" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            <iframe src="https://www.youtube.com/embed/yl3P0XiuQ0Y?autoplay=1&mute=1&loop=1&playlist=yl3P0XiuQ0Y&controls=0&rel=0&playsinline=1&enablejsapi=1" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
             </iframe >
         </div>
         
-        <!-- Premium Vignette & Contrast Overlay -->
         <div class="video-overlay"></div>
 
-        <!-- Minimalist Luxury Header -->
         <header>
             <div class="brand-logo">CEYLON</div>
             <ul class="nav-menu">
@@ -326,10 +337,8 @@
             </ul>
         </header>
 
-        <!-- Vertical Architectural Text Element (Hidden on mobile) -->
         <div class="side-element side-left">EST. 2026 — CURATED EXPERIENCES</div>
 
-        <!-- Centerpiece Luxury Typography -->
         <div class="main-content">
             <p class="sub-title">01 / Original Paradise</p>
             <h1 class="main-title">The Art of <br>Travel</h1>
@@ -339,7 +348,6 @@
             <a href="#" class="premium-btn">Begin Journey</a>
         </div>
 
-        <!-- Editorial Minimal Footer -->
         <footer>
             <div class="curated-destinations">
                 Current Chapter: <span>Amanwella & Ella Highlands</span>
