@@ -3,525 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discover Sri Lanka | Wonder of Asia</title>
-    
-    <!-- Premium External Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <title>EXPLORE SRI LANKA | Premium Travel Guide</title>
+    <!-- Google Fonts for Clean Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Modern Design System Tokens */
-        :root {
-            --primary-dark: #092c22;  /* Traditional Sri Lankan Deep Teal */
-            --accent-gold: #e5a93b;   /* Warm Sigiriya Sunset Gold */
-            --text-main: #2b3531;
-            --text-light: #ffffff;
-            --bg-body: #f4f7f5;
-            --card-bg: #ffffff;
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
+            background: #000; /* Pure Black Background Fallback */
             overflow-x: hidden;
         }
 
-        /* Glassmorphic Sticky Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 25px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0));
-            z-index: 1000;
-            transition: var(--transition-smooth);
-        }
-
-        header.sticky-active {
-            background: rgba(9, 44, 34, 0.92);
-            padding: 15px 8%;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            color: var(--text-light);
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--accent-gold);
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            margin-left: 35px;
-            font-weight: 500;
-            font-size: 15px;
-            opacity: 0.9;
-            position: relative;
-            transition: var(--transition-smooth);
-        }
-
-        nav a:hover {
-            opacity: 1;
-            color: var(--accent-gold);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -6px;
-            left: 0;
-            background: var(--accent-gold);
-            transition: var(--transition-smooth);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Immersive Video Hero Section */
+        /* Hero Container */
         .hero {
-            height: 100vh;
             position: relative;
-            overflow: hidden;
+            width: 100%;
+            height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            color: #fff;
         }
 
-        .video-container {
+        /* YouTube Video Background Wrapper */
+        .video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -2;
-            pointer-events: none;
+            pointer-events: none; /* Disables double click to pause or YouTube controls interaction */
+            overflow: hidden;
         }
 
-        /* Cinematic scale setup for flawless background playback */
-        .video-container iframe {
+        /* Scaling the iframe to crop YouTube logos/controls completely */
+        .video-background iframe {
+            width: 100vw;
+            height: 56.25vw; /* 16:9 Aspect Ratio */
+            min-height: 100vh;
+            min-width: 177.77vh; /* 16:9 Aspect Ratio */
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 100vw;
-            height: 56.25vw; 
-            min-height: 100vh;
-            min-width: 177.77vh; 
             transform: translate(-50%, -50%);
         }
 
-        /* Vignette & Contrast Overlay */
-        .hero::before {
-            content: "";
+        /* High Contrast Dark Overlay */
+        .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(9, 44, 34, 0.35), rgba(0, 0, 0, 0.75));
+            background: rgba(0, 0, 0, 0.65); /* Pure black with 65% opacity */
             z-index: -1;
         }
 
-        .hero-content {
-            text-align: center;
-            color: var(--text-light);
-            padding: 0 24px;
-            max-width: 850px;
-        }
-
-        .hero-content h1 {
-            font-size: 68px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.15;
-            letter-spacing: -1px;
-            text-shadow: 0 4px 24px rgba(0,0,0,0.3);
-        }
-
-        .hero-content p {
-            font-size: 22px;
-            margin-bottom: 40px;
-            font-weight: 300;
-            opacity: 0.95;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
-        }
-
-        .btn {
-            display: inline-flex;
+        /* Minimalist White Header Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            padding: 16px 38px;
-            background: var(--accent-gold);
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 6px 20px rgba(229, 169, 59, 0.35);
-            transition: var(--transition-smooth);
+            padding: 35px 8%;
+            z-index: 10;
         }
 
-        .btn:hover {
-            background: #d4952b;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(229, 169, 59, 0.5);
-        }
-
-        /* Content Sections */
-        section {
-            padding: 120px 8%;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .section-header h2 {
-            font-size: 42px;
-            color: var(--primary-dark);
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            font-size: 16px;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Curated Premium Grid Layout */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.03);
-            transition: var(--transition-smooth);
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-
-        .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 30px 60px rgba(9, 44, 34, 0.12);
-        }
-
-        .img-wrapper {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition-smooth);
-        }
-
-        .card:hover img {
-            transform: scale(1.08);
-        }
-
-        .card-body {
-            padding: 35px;
-        }
-
-        .card-body h3 {
+        .logo {
             font-size: 22px;
-            color: var(--primary-dark);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .card-body p {
-            color: #555555;
-            line-height: 1.7;
-            font-size: 15px;
-            font-weight: 400;
-        }
-
-        /* High-End Modern Contact Form Block */
-        .contact {
-            background: linear-gradient(145deg, #092c22 0%, #041611 100%);
-            color: var(--text-light);
-            border-radius: var(--radius-lg);
-            margin: 0 8% 120px 8%;
-            padding: 90px 6%;
-            box-shadow: 0 30px 70px rgba(9, 44, 34, 0.25);
-        }
-
-        .contact .section-header h2 {
-            color: var(--text-light);
-        }
-
-        .contact .section-header p {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .form-wrapper {
-            max-width: 750px;
-            margin: 0 auto;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-
-        .contact input,
-        .contact textarea {
-            width: 100%;
-            padding: 18px 24px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: var(--radius-md);
-            color: var(--text-light);
-            font-size: 15px;
-            outline: none;
-            transition: var(--transition-smooth);
-        }
-
-        .contact input:focus,
-        .contact textarea:focus {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 15px rgba(229, 169, 59, 0.25);
-        }
-
-        .contact textarea {
-            resize: none;
-            margin-bottom: 30px;
-        }
-
-        .contact input::placeholder,
-        .contact textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .contact button {
-            width: 100%;
-            padding: 18px;
-            background: var(--accent-gold);
-            color: var(--text-light);
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(229, 169, 59, 0.3);
-            transition: var(--transition-smooth);
         }
 
-        .contact button:hover {
-            background: #d4952b;
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin: 0 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Main Content Style */
+        .content {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 45px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        /* Sleek White Button with High Contrast Hover */
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 42px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            border: 1px solid #fff;
+        }
+
+        .cta-btn:hover {
+            background: transparent;
+            color: #fff;
             transform: translateY(-2px);
         }
 
-        /* Fluid Sticky Widgets */
-        .whatsapp {
-            position: fixed;
-            bottom: 35px;
-            right: 35px;
-            width: 64px;
-            height: 64px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
-            z-index: 999;
-            transition: var(--transition-smooth);
-        }
-
-        .whatsapp:hover {
-            transform: scale(1.1) rotate(12deg);
-            background: #20ba5a;
-        }
-
-        /* Clean Luxury Footer */
+        /* Footer Grid */
         footer {
-            background: #041611;
-            color: rgba(255, 255, 255, 0.45);
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 35px 8%;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Smooth UI Breakpoints */
+        .destinations-list {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .destinations-list span {
+            margin-right: 20px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        /* Mobile Optimization */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 44px; }
-            .hero-content p { font-size: 18px; }
-            .form-grid { grid-template-columns: 1fr; gap: 20px; }
-            header { padding: 20px 5%; }
-            nav { display: none; } /* Mobile responsive simplicity */
-            section { padding: 90px 6%; }
-            .contact { margin: 0 4% 90px 4%; }
+            .content h1 { font-size: 36px; letter-spacing: 2px; }
+            .content p { font-size: 14px; }
+            .nav-links { display: none; }
+            footer { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
-
 <body>
 
-    <!-- Main Dynamic Navigation Bar -->
-    <header id="mainHeader">
-        <div class="logo">Discover <span>Sri Lanka</span></div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#places">Places</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <!-- Interactive Hero Space -->
-    <section class="hero" id="home">
-        <div class="video-container">
-            <!-- Enhanced embed strings ensuring true fullscreen containment & seamless playback -->
-            <iframe
-                src="https://www.youtube.com/embed/QdBZY2fkU-0?autoplay=1&mute=1&loop=1&playlist=QdBZY2fkU-0&controls=0&showinfo=0&rel=0&iv_load_policy=3&enablejsapi=1&playsinline=1"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen>
+    <section class="hero">
+        <!-- YouTube Video Wrapper -->
+        <div class="video-background">
+            <!-- 
+                Parameters Explained:
+                - autoplay=1 & mute=1 (Required for browser autoplay)
+                - loop=1 & playlist=VIDEO_ID (Required for continuous looping)
+                - controls=0 & rel=0 (Hides YouTube player controls)
+            -->
+            <iframe src="https://www.youtube.com/embed/yl3P0XiuQ0Y?autoplay=1&mute=1&loop=1&playlist=yl3P0XiuQ0Y&controls=0&rel=0&showinfo=0&iv_load_policy=3" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
             </iframe>
         </div>
+        
+        <!-- Premium Dark Overlay -->
+        <div class="overlay"></div>
 
-        <div class="hero-content">
-            <h1>Ayubowan! The Island of Stories</h1>
-            <p>Immerse yourself in legendary rock citadels, whispering emerald tea valleys, and endless pristine coasts.</p>
-            <a href="#places" class="btn"><i class="fa-solid fa-compass"></i> Start Exploring</a>
+        <!-- Transparent Navigation -->
+        <header>
+            <div class="logo">Ceylon / Travels</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Journeys</a></li>
+                <li><a href="#">Journal</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </header>
+
+        <!-- Center Content -->
+        <div class="content">
+            <h1>Unveil The Paradise</h1>
+            <p>Immerse yourself in the breathtaking landscapes, ancient wonders, and endless golden coasts of Sri Lanka. Crafted for the intentional traveler.</p>
+            <a href="#" class="cta-btn">Explore Packages</a>
         </div>
-    </section>
 
-    <!-- Curated Destinations Grid -->
-    <section id="places">
-        <div class="section-header">
-            <h2>Iconic Destinations</h2>
-            <p>Carefully curated timeless locations that bring the magic of Sri Lanka straight to your itinerary.</p>
-        </div>
-
-        <div class="cards">
-            <!-- Destination: Sigiriya -->
-            <div class="card">
-                <div class="img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1586500036706-41963de24d8b?q=80&w=1200" alt="Sigiriya Fortress Profile">
-                </div>
-                <div class="card-body">
-                    <h3>Sigiriya Fortress</h3>
-                    <p>Rise above the plains to experience a monolithic rock citadel built by King Kashyapa, complete with ancient mirror walls and hanging gardens.</p>
-                </div>
+        <!-- Footer -->
+        <footer>
+            <div class="destinations-list">
+                <span>• Sigiriya</span> <span>• Ella</span> <span>• Mirissa</span>
             </div>
-
-            <!-- Destination: Mirissa -->
-            <div class="card">
-                <div class="img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200" alt="Mirissa Sandy Beach">
-                </div>
-                <div class="card-body">
-                    <h3>Mirissa Bay</h3>
-                    <p>Relax under swaying palms along crescent golden shores, pristine surf break zones, and legendary blue whale sanctuary points.</p>
-                </div>
-            </div>
-
-            <!-- Destination: Ella -->
-            <div class="card">
-                <div class="img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200" alt="Ella Highlands Train Crossing">
-                </div>
-                <div class="card-body">
-                    <h3>Ella Highlands</h3>
-                    <p>Breathe in mountain mist surrounded by lush cascade waterfalls, hiking trails to Little Adam’s Peak, and the famous architectural Nine Arch Bridge.</p>
-                </div>
-            </div>
-        </div>
+            <p class="copyright">&copy; 2026 CEYLON TRAVELS. UNCOMPROMISED LUXURY.</p>
+        </footer>
     </section>
-
-    <!-- Premium Custom Inquiries Box -->
-    <section class="contact" id="contact">
-        <div class="section-header">
-            <h2>Plan Your Bespoke Escape</h2>
-            <p>Let us align your travel dates with custom destination maps crafted perfectly for your taste.</p>
-        </div>
-
-        <div class="form-wrapper">
-            <form id="travelInquiryForm">
-                <div class="form-grid">
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email Address" required>
-                </div>
-                <textarea rows="5" placeholder="Share your vision (e.g., preferred travel duration, accommodation type, adventure scale)..." required></textarea>
-                <button type="submit">Submit Your Request</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Floating Live Link -->
-    <a class="whatsapp" href="https://wa.me/94770000000" target="_blank" aria-label="Direct Chat Support">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Footer Space -->
-    <footer>
-        &copy; 2026 Discover Sri Lanka Travel Agency. Designed for exceptional luxury travel experiences.
-    </footer>
-
-    <!-- Client-Side Runtime Interactions -->
-    <script>
-        const headerElement = document.getElementById('mainHeader');
-
-        // Handles adaptive header appearance adjustments on scrolling past the focal window
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 60) {
-                headerElement.classList.add('sticky-active');
-            } else {
-                headerElement.classList.remove('sticky-active');
-            }
-        });
-
-        // Elegant validation response sequence
-        document.getElementById("travelInquiryForm").addEventListener("submit", function(event){
-            event.preventDefault();
-            alert("Submitting request! Our elite island concierge will connect with you via email within 12 hours.");
-            this.reset();
-        });
-    </script>
 
 </body>
 </html>
